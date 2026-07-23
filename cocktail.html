@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8">
+  <title>여름 칵테일 레시피북</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background: #fdf6e3;
+      margin: 0;
+      padding: 0;
+      overflow-x: hidden;
+    }
+    h1 {
+      text-align: center;
+      color: #d35400;
+      margin: 20px 0;
+    }
+    .page {
+      display: none;
+      text-align: center;
+      padding: 20px;
+    }
+    .page.active {
+      display: block;
+      animation: fadeIn 0.8s;
+    }
+    .page img {
+      width: 300px;
+      border-radius: 10px;
+      margin: 20px 0;
+    }
+    @keyframes fadeIn {
+      from {opacity: 0;}
+      to {opacity: 1;}
+    }
+  </style>
+</head>
+<body>
+  <h1>🍸 여름 칵테일 레시피북</h1>
+
+  <!-- 모히토 -->
+  <div class="page active" id="page1">
+    <h2>모히토</h2>
+    <p>럼 50ml, 라임 주스 25ml, 설탕 시럽 15ml, 민트 10장, 탄산수 100ml</p>
+    <p>가니시: 민트 잎, 라임 슬라이스</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0b/Mojito_1.jpg" alt="모히토">
+  </div>
+
+  <!-- 마가리타 -->
+  <div class="page" id="page2">
+    <h2>마가리타</h2>
+    <p>데킬라 45ml, 트리플 섹 30ml, 라임 주스 15ml</p>
+    <p>가니시: 라임 슬라이스, 소금 림</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/6/6f/MargaritaReal.jpg" alt="마가리타">
+  </div>
+
+  <!-- 피나 콜라다 -->
+  <div class="page" id="page3">
+    <h2>피나 콜라다</h2>
+    <p>럼 60ml, 파인애플 주스 90ml, 코코넛 크림 30ml</p>
+    <p>가니시: 파인애플 조각, 체리</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0c/Pina_Colada.jpg" alt="피나 콜라다">
+  </div>
+
+  <!-- 진 앤 토닉 -->
+  <div class="page" id="page4">
+    <h2>진 앤 토닉</h2>
+    <p>진 50ml, 토닉 워터 150ml, 라임 주스 10ml</p>
+    <p>가니시: 라임 조각</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/0/0e/Gin_and_Tonic.jpg" alt="진 앤 토닉">
+  </div>
+
+  <!-- 데킬라 선라이즈 -->
+  <div class="page" id="page5">
+    <h2>데킬라 선라이즈</h2>
+    <p>데킬라 45ml, 오렌지 주스 90ml, 그레나딘 15ml</p>
+    <p>가니시: 오렌지 슬라이스</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/9/9e/Tequila_Sunrise.jpg" alt="데킬라 선라이즈">
+  </div>
+
+  <!-- 하이볼 -->
+  <div class="page" id="page6">
+    <h2>하이볼</h2>
+    <p>위스키 50ml, 탄산수 150ml</p>
+    <p>가니시: 레몬 슬라이스</p>
+    <img src="https://upload.wikimedia.org/wikipedia/commons/8/8c/Highball.jpg" alt="하이볼">
+  </div>
+
+  <!-- 비타500 칵테일 -->
+  <div class="page" id="page7">
+    <h2>비타500 칵테일</h2>
+    <p>보드카 45ml, 비타500 120ml, 레몬 주스 10ml</p>
+    <p>가니시: 레몬 조각</p>
+    <img src="https://img.etnews.com/photonews/2104/1416153_20210414150323_312_0001.jpg" alt="비타500 칵테일">
+  </div>
+
+  <!-- 효과음 (외부 URL) -->
+  <audio id="flipSound" src="https://www.soundjay.com/button/sounds/button-16.mp3"></audio>
+
+  <script>
+    let currentPage = 1;
+    const totalPages = 7;
+    let startX = 0;
+
+    function showPage(pageNum) {
+      for (let i = 1; i <= totalPages; i++) {
+        document.getElementById('page' + i).classList.remove('active');
+      }
+      document.getElementById('page' + pageNum).classList.add('active');
+    }
+
+    function nextPage() {
+      if (currentPage < totalPages) {
+        currentPage++;
+        showPage(currentPage);
+        document.getElementById('flipSound').play();
+      }
+    }
+
+    function prevPage() {
+      if (currentPage > 1) {
+        currentPage--;
+        showPage(currentPage);
+        document.getElementById('flipSound').play();
+      }
+    }
+
+    // 스와이프 제스처 감지
+    document.addEventListener('touchstart', function(e) {
+      startX = e.touches[0].clientX;
+    });
+
+    document.addEventListener('touchend', function(e) {
+      let endX = e.changedTouches[0].clientX;
+      if (startX - endX > 50) {
+        nextPage(); // 왼쪽으로 스와이프 → 다음 페이지
+      } else if (endX - startX > 50) {
+        prevPage(); // 오른쪽으로 스와이프 → 이전 페이지
+      }
+    });
+  </script>
+</body>
+</html>
