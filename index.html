@@ -3,148 +3,312 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>나만의 요리 & 칵테일 레시피 모음집</title>
+    <meta name="description" content="나만의 요리와 레시피를 모아두는 개인 레시피 북">
+    <title>나만의 레시피 북</title>
     <style>
-        *, *::before, *::after { box-sizing: border-box; }
+        * { box-sizing: border-box; }
+
+        :root {
+            --navy: #1a365d;
+            --blue: #3182ce;
+            --text: #1a202c;
+            --muted: #718096;
+            --bg: #f5f7fa;
+            --card: #ffffff;
+            --line: #e2e8f0;
+        }
+
         body {
-            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
-            background-color: #f7fafc;
-            color: #2d3748;
             margin: 0;
-            padding: 0;
+            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
+            background: var(--bg);
+            color: var(--text);
             line-height: 1.6;
         }
-        .header {
-            background-color: #1a365d;
+
+        .hero {
+            position: relative;
+            overflow: hidden;
+            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
             color: white;
-            text-align: center;
-            padding: 40px 20px;
+            padding: 56px 20px 64px;
         }
-        .header h1 { margin: 0 0 10px 0; font-size: 26px; }
-        .header p { margin: 0; color: #cbd5e0; font-size: 15px; }
-        .container { max-width: 900px; margin: 30px auto; padding: 0 20px; }
-        .section-title {
-            font-size: 20px;
-            color: #2c5282;
-            border-left: 4px solid #3182ce;
-            padding-left: 10px;
-            margin-top: 30px;
-            margin-bottom: 15px;
+
+        .hero::after {
+            content: "🍲";
+            position: absolute;
+            right: 7%;
+            bottom: -22px;
+            font-size: 110px;
+            opacity: .10;
+            transform: rotate(-12deg);
         }
-        .grid {
-            display: table;
-            width: 100%;
-            table-layout: fixed;
-            border-spacing: 15px;
-            margin-left: -15px;
-            margin-right: -15px;
-            margin-bottom: 15px;
+
+        .hero-inner {
+            max-width: 1000px;
+            margin: auto;
+            position: relative;
+            z-index: 1;
         }
-        .card {
-            display: table-cell;
-            background: white;
-            border: 1px solid #e2e8f0;
-            border-radius: 8px;
-            padding: 20px;
-            vertical-align: top;
-            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
-            text-decoration: none;
-            color: inherit;
-        }
-        .card:hover {
-            border-color: #3182ce;
-            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
-        }
-        .card-tag {
+
+        .eyebrow {
             display: inline-block;
-            padding: 3px 8px;
+            margin-bottom: 12px;
+            padding: 5px 10px;
+            border: 1px solid rgba(255,255,255,.25);
+            border-radius: 999px;
             font-size: 12px;
-            font-weight: bold;
-            border-radius: 4px;
-            margin-bottom: 10px;
+            color: #e2e8f0;
+            background: rgba(255,255,255,.08);
         }
-        .tag-seafood { background-color: #ebf8ff; color: #2b6cb0; }
-        .tag-meat { background-color: #fffaf0; color: #dd6b20; }
-        .tag-cocktail { background-color: #faf5ff; color: #6b46c1; }
+
+        .hero h1 {
+            margin: 0;
+            font-size: clamp(30px, 7vw, 46px);
+            letter-spacing: -1.5px;
+        }
+
+        .hero p {
+            margin: 12px 0 0;
+            color: #dbeafe;
+            font-size: 15px;
+        }
+
+        .container {
+            max-width: 1000px;
+            margin: -25px auto 0;
+            padding: 0 18px 45px;
+            position: relative;
+            z-index: 2;
+        }
+
+        .welcome {
+            background: var(--card);
+            border: 1px solid var(--line);
+            border-radius: 16px;
+            padding: 20px 22px;
+            box-shadow: 0 8px 25px rgba(15, 23, 42, .07);
+            margin-bottom: 30px;
+        }
+
+        .welcome strong {
+            display: block;
+            font-size: 16px;
+            margin-bottom: 4px;
+        }
+
+        .welcome span {
+            color: var(--muted);
+            font-size: 13px;
+        }
+
+        .section {
+            margin-top: 30px;
+        }
+
+        .section-heading {
+            display: flex;
+            align-items: end;
+            justify-content: space-between;
+            margin-bottom: 14px;
+        }
+
+        .section-title {
+            margin: 0;
+            font-size: 21px;
+            letter-spacing: -.5px;
+        }
+
+        .section-subtitle {
+            margin: 0;
+            color: var(--muted);
+            font-size: 12px;
+        }
+
+        .grid {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            gap: 15px;
+        }
+
+        .card {
+            display: flex;
+            flex-direction: column;
+            min-height: 220px;
+            padding: 21px;
+            background: var(--card);
+            color: inherit;
+            text-decoration: none;
+            border: 1px solid var(--line);
+            border-radius: 15px;
+            box-shadow: 0 4px 12px rgba(15, 23, 42, .04);
+            transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
+        }
+
+        .card:hover {
+            transform: translateY(-3px);
+            border-color: #90cdf4;
+            box-shadow: 0 10px 24px rgba(15, 23, 42, .09);
+        }
+
+        .card-top {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            margin-bottom: 18px;
+        }
+
+        .icon {
+            width: 48px;
+            height: 48px;
+            display: grid;
+            place-items: center;
+            border-radius: 13px;
+            font-size: 25px;
+        }
+
+        .icon-seafood { background: #ebf8ff; }
+        .icon-meat { background: #fffaf0; }
+        .icon-cocktail { background: #faf5ff; }
+
+        .card-tag {
+            font-size: 11px;
+            font-weight: bold;
+            color: var(--muted);
+        }
+
         .card-title {
             font-size: 18px;
             font-weight: bold;
+            line-height: 1.4;
             margin-bottom: 8px;
-            color: #1a202c;
         }
+
         .card-desc {
-            font-size: 14px;
-            color: #4a5568;
-            margin-bottom: 15px;
+            color: #718096;
+            font-size: 13px;
+            line-height: 1.65;
+            margin: 0;
         }
-        .btn {
-            display: inline-block;
-            background-color: #3182ce;
-            color: white;
-            padding: 8px 14px;
-            border-radius: 4px;
+
+        .card-button {
+            margin-top: auto;
+            padding-top: 18px;
+            color: var(--blue);
             font-size: 13px;
             font-weight: bold;
-            text-decoration: none;
         }
+
+        .card-button::after {
+            content: "  →";
+            transition: margin-left .18s ease;
+        }
+
+        .card:hover .card-button::after {
+            margin-left: 4px;
+        }
+
         .footer {
             text-align: center;
-            padding: 30px;
-            font-size: 13px;
+            padding: 28px 20px 35px;
             color: #a0aec0;
-            border-top: 1px solid #e2e8f0;
-            margin-top: 40px;
+            font-size: 12px;
+            border-top: 1px solid var(--line);
+        }
+
+        @media (max-width: 760px) {
+            .hero { padding: 42px 20px 52px; }
+            .hero::after { right: -5px; font-size: 90px; }
+            .container { padding-left: 14px; padding-right: 14px; }
+            .grid { grid-template-columns: 1fr; gap: 12px; }
+            .card { min-height: 175px; }
+            .section-heading { align-items: center; }
+            .section-subtitle { display: none; }
+        }
+
+        @media (min-width: 761px) and (max-width: 900px) {
+            .grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
         }
     </style>
 </head>
 <body>
-<div class="header">
-    <h1>🍽️ 나만의 요리 & 칵테일 레시피 모음집</h1>
-    <p>깃허브 저장소(GitHub Pages)에서 편리하게 확인하는 레시피 북</p>
-</div>
-<div class="container">
-    <!-- 요리 레시피 섹션 -->
-    <div class="section-title">🍲 요리 레시피 (Food Recipes)</div>
-    <div class="grid">
-        <!-- 해물지리 카드 -->
-        <a href="haemul-jiri.html" class="card">
-            <span class="card-tag tag-seafood">해산물 / 탕</span>
-            <div class="card-title">시원하고 깔끔한 해물지리</div>
-            <div class="card-desc">재료 본연의 감칠맛을 살린 맑은 국물 해물탕 레시피와 꿀팁, 양념장 비율 안내</div>
-            <span class="btn">레시피 보기 ➔</span>
-        </a>
-        
-        <!-- 한방 족발 카드 -->
-        <a href="jokbal.html" class="card">
-            <span class="card-tag tag-meat">돼지고기 / 삶기</span>
-            <div class="card-title">잡내 없이 쫀득한 한방 족발</div>
-            <div class="card-desc">집에서 실패 없이 만드는 쫀득한 족발 레시피와 잡내 잡는 특급 비법</div>
-            <span class="btn">레시피 보기 ➔</span>
-        </a>
 
-        <!-- 오리탕 카드 -->
-        <a href="ori-tang.html" class="card">
-            <span class="card-tag tag-meat">오리고기 / 탕</span>
-            <div class="card-title">진하고 칼칼한 들깨 오리탕</div>
-            <div class="card-desc">오리 잡내를 잡고 들깨의 고소함과 칼칼한 국물 맛을 살린 오리탕 레시피</div>
-            <span class="btn">레시피 보기 ➔</span>
-        </a>
+<header class="hero">
+    <div class="hero-inner">
+        <span class="eyebrow">MY RECIPE COLLECTION</span>
+        <h1>🍽️ 나만의 레시피 북</h1>
+        <p>자주 해 먹는 요리와 레시피를 한곳에 모아두었습니다.</p>
+    </div>
+</header>
+
+<main class="container">
+    <div class="welcome">
+        <strong>오늘 뭐 해먹지?</strong>
+        <span>카드를 눌러 원하는 레시피를 바로 확인하세요.</span>
     </div>
 
-    <!-- 칵테일 레시피 섹션 -->
-    <div class="section-title">🍸 칵테일 레시피 (Cocktail Recipes)</div>
-    <div class="grid">
-        <!-- 칵테일 카드 -->
-        <a href="cocktail.html" class="card">
-            <span class="card-tag tag-cocktail">홈바 / 음료</span>
-            <div class="card-title">클래식 칵테일 레시피 4종</div>
-            <div class="card-desc">모히또, 하이볼, 마가리타, 깔루아 밀크 등 집에서 즐기는 클래식 칵테일 가이드</div>
-            <span class="btn">레시피 보기 ➔</span>
-        </a>
-    </div>
-</div>
-<div class="footer">
-    My Recipe Collection &copy; GitHub Pages Archive
-</div>
+    <section class="section">
+        <div class="section-heading">
+            <h2 class="section-title">🍲 요리 레시피</h2>
+            <p class="section-subtitle">집에서 만들어 먹는 요리</p>
+        </div>
+
+        <div class="grid">
+            <a href="haemul-jiri.html" class="card">
+                <div class="card-top">
+                    <div class="icon icon-seafood">🐟</div>
+                    <span class="card-tag">해산물 · 탕</span>
+                </div>
+                <div class="card-title">시원하고 깔끔한 해물지리</div>
+                <p class="card-desc">재료 본연의 감칠맛을 살린 맑은 국물 해물탕 레시피</p>
+                <div class="card-button">레시피 보기</div>
+            </a>
+
+            <a href="jokbal.html" class="card">
+                <div class="card-top">
+                    <div class="icon icon-meat">🍖</div>
+                    <span class="card-tag">돼지고기 · 삶기</span>
+                </div>
+                <div class="card-title">잡내 없이 쫀득한 한방 족발</div>
+                <p class="card-desc">집에서 실패 없이 만드는 쫀득한 족발 레시피와 잡내 잡는 비법</p>
+                <div class="card-button">레시피 보기</div>
+            </a>
+
+            <a href="ori-tang.html" class="card">
+                <div class="card-top">
+                    <div class="icon icon-meat">🦆</div>
+                    <span class="card-tag">오리고기 · 탕</span>
+                </div>
+                <div class="card-title">진하고 칼칼한 들깨 오리탕</div>
+                <p class="card-desc">오리의 깊은 맛에 들깨의 고소함을 더한 진한 오리탕 레시피</p>
+                <div class="card-button">레시피 보기</div>
+            </a>
+        </div>
+    </section>
+
+    <section class="section">
+        <div class="section-heading">
+            <h2 class="section-title">🍸 칵테일 레시피</h2>
+            <p class="section-subtitle">나만의 음료 레시피</p>
+        </div>
+
+        <div class="grid">
+            <a href="cocktail.html" class="card">
+                <div class="card-top">
+                    <div class="icon icon-cocktail">🍹</div>
+                    <span class="card-tag">홈바 · 음료</span>
+                </div>
+                <div class="card-title">클래식 칵테일 레시피</div>
+                <p class="card-desc">여러 가지 칵테일 레시피를 한 페이지에서 확인할 수 있습니다.</p>
+                <div class="card-button">레시피 보기</div>
+            </a>
+        </div>
+    </section>
+</main>
+
+<footer class="footer">
+    My Recipe Collection · GitHub Pages
+</footer>
+
 </body>
 </html>
