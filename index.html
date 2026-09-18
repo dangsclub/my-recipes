@@ -29,33 +29,19 @@
         }
 
         .hero {
-            position: relative;
-            overflow: hidden;
             background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
             color: white;
-            padding: 56px 20px 64px;
-        }
-
-        .hero::after {
-            content: "🍲";
-            position: absolute;
-            right: 7%;
-            bottom: -22px;
-            font-size: 110px;
-            opacity: .10;
-            transform: rotate(-12deg);
+            padding: 48px 20px 58px;
         }
 
         .hero-inner {
-            max-width: 1000px;
+            max-width: 760px;
             margin: auto;
-            position: relative;
-            z-index: 1;
         }
 
         .eyebrow {
             display: inline-block;
-            margin-bottom: 12px;
+            margin-bottom: 10px;
             padding: 5px 10px;
             border: 1px solid rgba(255,255,255,.25);
             border-radius: 999px;
@@ -71,14 +57,14 @@
         }
 
         .hero p {
-            margin: 12px 0 0;
+            margin: 10px 0 0;
             color: #dbeafe;
             font-size: 15px;
         }
 
         .container {
-            max-width: 1000px;
-            margin: -25px auto 0;
+            max-width: 760px;
+            margin: -22px auto 0;
             padding: 0 18px 45px;
             position: relative;
             z-index: 2;
@@ -95,7 +81,7 @@
 
         .welcome strong {
             display: block;
-            font-size: 16px;
+            font-size: 17px;
             margin-bottom: 4px;
         }
 
@@ -125,35 +111,19 @@
             font-size: 12px;
         }
 
-        /* 모든 레시피는 한 줄 가로형. 카드가 많아지면 이 영역만 좌우 스크롤 */
+        /* 레시피를 위에서 아래로 한 장씩 볼 수 있는 세로 목록 */
         .grid {
             display: flex;
-            gap: 15px;
+            flex-direction: column;
+            gap: 14px;
             width: 100%;
-            overflow-x: auto;
-            overflow-y: hidden;
-            padding: 3px 3px 14px;
-            scroll-snap-type: x proximity;
-            -webkit-overflow-scrolling: touch;
-            scrollbar-width: thin;
-        }
-
-        .grid::-webkit-scrollbar { height: 6px; }
-        .grid::-webkit-scrollbar-track {
-            background: #edf2f7;
-            border-radius: 10px;
-        }
-        .grid::-webkit-scrollbar-thumb {
-            background: #cbd5e0;
-            border-radius: 10px;
         }
 
         .card {
-            flex: 0 0 300px;
-            width: 300px;
+            width: 100%;
             display: flex;
             flex-direction: column;
-            min-height: 220px;
+            min-height: 0;
             padding: 21px;
             background: var(--card);
             color: inherit;
@@ -161,12 +131,11 @@
             border: 1px solid var(--line);
             border-radius: 15px;
             box-shadow: 0 4px 12px rgba(15, 23, 42, .04);
-            scroll-snap-align: start;
             transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
         }
 
         .card:hover {
-            transform: translateY(-3px);
+            transform: translateY(-2px);
             border-color: #90cdf4;
             box-shadow: 0 10px 24px rgba(15, 23, 42, .09);
         }
@@ -175,7 +144,7 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
-            margin-bottom: 18px;
+            margin-bottom: 14px;
         }
 
         .icon {
@@ -198,7 +167,7 @@
         }
 
         .card-title {
-            font-size: 18px;
+            font-size: 21px;
             font-weight: bold;
             line-height: 1.4;
             margin-bottom: 8px;
@@ -206,30 +175,24 @@
 
         .card-desc {
             color: #718096;
-            font-size: 13px;
+            font-size: 14px;
             line-height: 1.65;
             margin: 0;
         }
 
         .card-button {
-            margin-top: auto;
-            padding-top: 18px;
-            color: var(--blue);
+            margin-top: 15px;
+            align-self: flex-start;
+            padding: 9px 15px;
+            border-radius: 9px;
+            background: var(--blue);
+            color: white;
             font-size: 13px;
             font-weight: bold;
         }
 
         .card-button::after {
             content: "  →";
-            transition: margin-left .18s ease;
-        }
-
-        .card:hover .card-button::after { margin-left: 4px; }
-
-        .scroll-hint {
-            margin: 2px 3px 0;
-            color: #a0aec0;
-            font-size: 11px;
         }
 
         .footer {
@@ -240,24 +203,17 @@
             border-top: 1px solid var(--line);
         }
 
-        @media (max-width: 760px) {
-            .hero { padding: 42px 20px 52px; }
-            .hero::after { right: -5px; font-size: 90px; }
+        @media (max-width: 600px) {
+            .hero { padding: 40px 20px 50px; }
             .container { padding-left: 14px; padding-right: 14px; }
-            .section-heading { align-items: center; }
             .section-subtitle { display: none; }
 
-            .grid {
-                gap: 12px;
-                padding-left: 2px;
-                padding-right: 2px;
+            .card {
+                padding: 19px;
             }
 
-            .card {
-                flex-basis: 82vw;
-                width: 82vw;
-                min-height: 190px;
-                padding: 19px;
+            .card-title {
+                font-size: 20px;
             }
         }
     </style>
@@ -275,7 +231,7 @@
 <main class="container">
     <div class="welcome">
         <strong>오늘 뭐 해먹지?</strong>
-        <span>레시피 카드를 좌우로 넘겨 원하는 메뉴를 찾아보세요.</span>
+        <span>레시피를 위에서 아래로 차례대로 편하게 확인해보세요.</span>
     </div>
 
     <section class="section">
@@ -315,7 +271,6 @@
                 <div class="card-button">레시피 보기</div>
             </a>
         </div>
-        <div class="scroll-hint">← 좌우로 밀어서 더 많은 레시피 보기 →</div>
     </section>
 
     <section class="section">
