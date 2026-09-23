@@ -7,7 +7,6 @@
     <title>나만의 레시피 북</title>
     <style>
         * { box-sizing: border-box; }
-
         :root {
             --navy: #1a365d;
             --blue: #3182ce;
@@ -17,209 +16,45 @@
             --card: #ffffff;
             --line: #e2e8f0;
         }
-
         html { scroll-behavior: smooth; }
-
-        body {
-            margin: 0;
-            font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif;
-            background: var(--bg);
-            color: var(--text);
-            line-height: 1.6;
-        }
-
-        .hero {
-            background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%);
-            color: white;
-            padding: 48px 20px 58px;
-        }
-
-        .hero-inner {
-            max-width: 760px;
-            margin: auto;
-        }
-
-        .eyebrow {
-            display: inline-block;
-            margin-bottom: 10px;
-            padding: 5px 10px;
-            border: 1px solid rgba(255,255,255,.25);
-            border-radius: 999px;
-            font-size: 12px;
-            color: #e2e8f0;
-            background: rgba(255,255,255,.08);
-        }
-
-        .hero h1 {
-            margin: 0;
-            font-size: clamp(30px, 7vw, 46px);
-            letter-spacing: -1.5px;
-        }
-
-        .hero p {
-            margin: 10px 0 0;
-            color: #dbeafe;
-            font-size: 15px;
-        }
-
-        .container {
-            max-width: 760px;
-            margin: -22px auto 0;
-            padding: 0 18px 45px;
-            position: relative;
-            z-index: 2;
-        }
-
-        .welcome {
-            background: var(--card);
-            border: 1px solid var(--line);
-            border-radius: 16px;
-            padding: 20px 22px;
-            box-shadow: 0 8px 25px rgba(15, 23, 42, .07);
-            margin-bottom: 30px;
-        }
-
-        .welcome strong {
-            display: block;
-            font-size: 17px;
-            margin-bottom: 4px;
-        }
-
-        .welcome span {
-            color: var(--muted);
-            font-size: 13px;
-        }
-
+        body { margin: 0; font-family: 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; background: var(--bg); color: var(--text); line-height: 1.6; }
+        .hero { background: linear-gradient(135deg, #1a365d 0%, #2c5282 100%); color: white; padding: 48px 20px 58px; }
+        .hero-inner { max-width: 760px; margin: auto; }
+        .eyebrow { display: inline-block; margin-bottom: 10px; padding: 5px 10px; border: 1px solid rgba(255,255,255,.25); border-radius: 999px; font-size: 12px; color: #e2e8f0; background: rgba(255,255,255,.08); }
+        .hero h1 { margin: 0; font-size: clamp(30px, 7vw, 46px); letter-spacing: -1.5px; }
+        .hero p { margin: 10px 0 0; color: #dbeafe; font-size: 15px; }
+        .container { max-width: 760px; margin: -22px auto 0; padding: 0 18px 45px; position: relative; z-index: 2; }
+        .welcome { background: var(--card); border: 1px solid var(--line); border-radius: 16px; padding: 20px 22px; box-shadow: 0 8px 25px rgba(15, 23, 42, .07); margin-bottom: 30px; }
+        .welcome strong { display: block; font-size: 17px; margin-bottom: 4px; }
+        .welcome span { color: var(--muted); font-size: 13px; }
         .section { margin-top: 30px; }
-
-        .section-heading {
-            display: flex;
-            align-items: end;
-            justify-content: space-between;
-            margin-bottom: 14px;
-        }
-
-        .section-title {
-            margin: 0;
-            font-size: 21px;
-            letter-spacing: -.5px;
-        }
-
-        .section-subtitle {
-            margin: 0;
-            color: var(--muted);
-            font-size: 12px;
-        }
-
-        /* 레시피를 위에서 아래로 한 장씩 볼 수 있는 세로 목록 */
-        .grid {
-            display: flex;
-            flex-direction: column;
-            gap: 14px;
-            width: 100%;
-        }
-
-        .card {
-            width: 100%;
-            display: flex;
-            flex-direction: column;
-            min-height: 0;
-            padding: 21px;
-            background: var(--card);
-            color: inherit;
-            text-decoration: none;
-            border: 1px solid var(--line);
-            border-radius: 15px;
-            box-shadow: 0 4px 12px rgba(15, 23, 42, .04);
-            transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease;
-        }
-
-        .card:hover {
-            transform: translateY(-2px);
-            border-color: #90cdf4;
-            box-shadow: 0 10px 24px rgba(15, 23, 42, .09);
-        }
-
-        .card-top {
-            display: flex;
-            align-items: center;
-            justify-content: space-between;
-            margin-bottom: 14px;
-        }
-
-        .icon {
-            width: 48px;
-            height: 48px;
-            display: grid;
-            place-items: center;
-            border-radius: 13px;
-            font-size: 25px;
-        }
-
+        .section-heading { display: flex; align-items: end; justify-content: space-between; margin-bottom: 14px; }
+        .section-title { margin: 0; font-size: 21px; letter-spacing: -.5px; }
+        .section-subtitle { margin: 0; color: var(--muted); font-size: 12px; }
+        .grid { display: flex; flex-direction: column; gap: 14px; width: 100%; }
+        .card { width: 100%; display: flex; flex-direction: column; min-height: 0; padding: 21px; background: var(--card); color: inherit; text-decoration: none; border: 1px solid var(--line); border-radius: 15px; box-shadow: 0 4px 12px rgba(15, 23, 42, .04); transition: transform .18s ease, box-shadow .18s ease, border-color .18s ease; }
+        .card:hover { transform: translateY(-2px); border-color: #90cdf4; box-shadow: 0 10px 24px rgba(15, 23, 42, .09); }
+        .card-top { display: flex; align-items: center; justify-content: space-between; margin-bottom: 14px; }
+        .icon { width: 48px; height: 48px; display: grid; place-items: center; border-radius: 13px; font-size: 25px; }
         .icon-seafood { background: #ebf8ff; }
         .icon-meat { background: #fffaf0; }
         .icon-cocktail { background: #faf5ff; }
-
-        .card-tag {
-            font-size: 11px;
-            font-weight: bold;
-            color: var(--muted);
-        }
-
-        .card-title {
-            font-size: 21px;
-            font-weight: bold;
-            line-height: 1.4;
-            margin-bottom: 8px;
-        }
-
-        .card-desc {
-            color: #718096;
-            font-size: 14px;
-            line-height: 1.65;
-            margin: 0;
-        }
-
-        .card-button {
-            margin-top: 15px;
-            align-self: flex-start;
-            padding: 9px 15px;
-            border-radius: 9px;
-            background: var(--blue);
-            color: white;
-            font-size: 13px;
-            font-weight: bold;
-        }
-
-        .card-button::after {
-            content: "  →";
-        }
-
-        .footer {
-            text-align: center;
-            padding: 28px 20px 35px;
-            color: #a0aec0;
-            font-size: 12px;
-            border-top: 1px solid var(--line);
-        }
-
+        .card-tag { font-size: 11px; font-weight: bold; color: var(--muted); }
+        .card-title { font-size: 21px; font-weight: bold; line-height: 1.4; margin-bottom: 8px; }
+        .card-desc { color: #718096; font-size: 14px; line-height: 1.65; margin: 0; }
+        .card-button { margin-top: 15px; align-self: flex-start; padding: 9px 15px; border-radius: 9px; background: var(--blue); color: white; font-size: 13px; font-weight: bold; }
+        .card-button::after { content: "  →"; }
+        .footer { text-align: center; padding: 28px 20px 35px; color: #a0aec0; font-size: 12px; border-top: 1px solid var(--line); }
         @media (max-width: 600px) {
             .hero { padding: 40px 20px 50px; }
             .container { padding-left: 14px; padding-right: 14px; }
             .section-subtitle { display: none; }
-
-            .card {
-                padding: 19px;
-            }
-
-            .card-title {
-                font-size: 20px;
-            }
+            .card { padding: 19px; }
+            .card-title { font-size: 20px; }
         }
     </style>
 </head>
 <body>
-
 <header class="hero">
     <div class="hero-inner">
         <span class="eyebrow">MY RECIPE COLLECTION</span>
@@ -227,74 +62,57 @@
         <p>자주 해 먹는 요리와 레시피를 한곳에 모아두었습니다.</p>
     </div>
 </header>
-
 <main class="container">
     <div class="welcome">
         <strong>오늘 뭐 해먹지?</strong>
         <span>레시피를 위에서 아래로 차례대로 편하게 확인해보세요.</span>
     </div>
-
     <section class="section">
         <div class="section-heading">
             <h2 class="section-title">🍲 요리 레시피</h2>
             <p class="section-subtitle">집에서 만들어 먹는 요리</p>
         </div>
-
         <div class="grid">
             <a href="haemul-jiri.html" class="card">
-                <div class="card-top">
-                    <div class="icon icon-seafood">🐟</div>
-                    <span class="card-tag">해산물 · 탕</span>
-                </div>
+                <div class="card-top"><div class="icon icon-seafood">🐟</div><span class="card-tag">해산물 · 탕</span></div>
                 <div class="card-title">시원하고 깔끔한 해물지리</div>
                 <p class="card-desc">재료 본연의 감칠맛을 살린 맑은 국물 해물탕 레시피</p>
                 <div class="card-button">레시피 보기</div>
             </a>
-
             <a href="jokbal.html" class="card">
-                <div class="card-top">
-                    <div class="icon icon-meat">🍖</div>
-                    <span class="card-tag">돼지고기 · 삶기</span>
-                </div>
+                <div class="card-top"><div class="icon icon-meat">🍖</div><span class="card-tag">돼지고기 · 삶기</span></div>
                 <div class="card-title">잡내 없이 쫀득한 한방 족발</div>
                 <p class="card-desc">집에서 실패 없이 만드는 쫀득한 족발 레시피와 잡내 잡는 비법</p>
                 <div class="card-button">레시피 보기</div>
             </a>
-
             <a href="ori-tang.html" class="card">
-                <div class="card-top">
-                    <div class="icon icon-meat">🦆</div>
-                    <span class="card-tag">오리고기 · 탕</span>
-                </div>
+                <div class="card-top"><div class="icon icon-meat">🦆</div><span class="card-tag">오리고기 · 탕</span></div>
                 <div class="card-title">진하고 칼칼한 들깨 오리탕</div>
                 <p class="card-desc">오리의 깊은 맛에 들깨의 고소함을 더한 진한 오리탕 레시피</p>
                 <div class="card-button">레시피 보기</div>
             </a>
-
+            <a href="yukgaejang.html" class="card">
+                <div class="card-top"><div class="icon icon-meat">🥩</div><span class="card-tag">소고기 · 국물</span></div>
+                <div class="card-title">얼큰하고 깊은 맛의 육개장</div>
+                <p class="card-desc">소고기와 대파, 고사리를 듬뿍 넣어 끓이는 칼칼한 집밥 육개장 레시피</p>
+                <div class="card-button">레시피 보기</div>
+            </a>
             <a href="sikhye.html" class="card">
-                <div class="card-top">
-                    <div class="icon icon-meat">🍚</div>
-                    <span class="card-tag">전통음료 · 디저트</span>
-                </div>
+                <div class="card-top"><div class="icon icon-meat">🍚</div><span class="card-tag">전통음료 · 디저트</span></div>
                 <div class="card-title">전통 식혜</div>
                 <p class="card-desc">엿기름으로 밥을 삭혀 만드는 깔끔하고 달콤한 집식혜 레시피</p>
                 <div class="card-button">레시피 보기</div>
             </a>
         </div>
     </section>
-
     <section class="section">
         <div class="section-heading">
             <h2 class="section-title">🍸 칵테일 레시피</h2>
             <p class="section-subtitle">나만의 음료 레시피</p>
         </div>
-
         <div class="grid">
             <a href="cocktail.html" class="card">
-                <div class="card-top">
-                    <div class="icon icon-cocktail">🍹</div>
-                    <span class="card-tag">홈바 · 음료</span>
-                </div>
+                <div class="card-top"><div class="icon icon-cocktail">🍹</div><span class="card-tag">홈바 · 음료</span></div>
                 <div class="card-title">클래식 칵테일 레시피</div>
                 <p class="card-desc">여러 가지 칵테일 레시피를 한 페이지에서 확인할 수 있습니다.</p>
                 <div class="card-button">레시피 보기</div>
@@ -302,10 +120,6 @@
         </div>
     </section>
 </main>
-
-<footer class="footer">
-    My Recipe Collection · GitHub Pages
-</footer>
-
+<footer class="footer">My Recipe Collection · GitHub Pages</footer>
 </body>
 </html>
