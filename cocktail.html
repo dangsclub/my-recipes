@@ -4,40 +4,18 @@
   <meta charset="UTF-8">
   <title>여름 칵테일 레시피북</title>
   <style>
-    body {
-      font-family: Arial, sans-serif;
-      background: #fdf6e3;
-      margin: 0;
-      padding: 0;
-      overflow-x: hidden;
-    }
-    h1 {
-      text-align: center;
-      color: #d35400;
-      margin: 20px 0;
-    }
-    .page {
-      display: none;
-      text-align: center;
-      padding: 20px;
-    }
-    .page.active {
-      display: block;
-      animation: fadeIn 0.8s;
-    }
-    .page img {
-      width: 300px;
-      border-radius: 10px;
-      margin: 20px 0;
-    }
-    @keyframes fadeIn {
-      from {opacity: 0;}
-      to {opacity: 1;}
-    }
+    body { font-family: Arial, sans-serif; background: #fdf6e3; margin: 0; padding: 0; overflow-x: hidden; }
+    h1 { text-align: center; color: #8a4b08; margin: 20px 0 12px; }
+    .warning { max-width: 760px; margin: 0 auto 18px; padding: 12px 16px; background: #fff7df; border: 1px solid #e7c66a; border-left: 5px solid #c58a16; border-radius: 8px; color: #5f4b1f; font-size: 14px; line-height: 1.6; }
+    .page { display: none; text-align: center; padding: 20px; max-width: 760px; margin: 0 auto; }
+    .page.active { display: block; animation: fadeIn 0.8s; }
+    .page img { width: 300px; max-width: 90%; border-radius: 10px; margin: 20px 0; }
+    @keyframes fadeIn { from {opacity: 0;} to {opacity: 1;} }
   </style>
 </head>
 <body>
   <h1>🍸 여름 칵테일 레시피북</h1>
+  <div class="warning" role="note"><strong>⚠️ 성인용 주류 안내</strong><br>이 페이지에는 주류 정보가 포함되어 있습니다. 미성년자의 음주를 권장하지 않으며, 성인은 관련 법규와 안전수칙을 준수해 주세요.</div>
 
   <!-- 모히토 -->
   <div class="page active" id="page1">
@@ -95,50 +73,16 @@
     <img src="https://img.etnews.com/photonews/2104/1416153_20210414150323_312_0001.jpg" alt="비타500 칵테일">
   </div>
 
-  <!-- 효과음 (외부 URL) -->
   <audio id="flipSound" src="https://www.soundjay.com/button/sounds/button-16.mp3"></audio>
-
   <script>
     let currentPage = 1;
     const totalPages = 7;
     let startX = 0;
-
-    function showPage(pageNum) {
-      for (let i = 1; i <= totalPages; i++) {
-        document.getElementById('page' + i).classList.remove('active');
-      }
-      document.getElementById('page' + pageNum).classList.add('active');
-    }
-
-    function nextPage() {
-      if (currentPage < totalPages) {
-        currentPage++;
-        showPage(currentPage);
-        document.getElementById('flipSound').play();
-      }
-    }
-
-    function prevPage() {
-      if (currentPage > 1) {
-        currentPage--;
-        showPage(currentPage);
-        document.getElementById('flipSound').play();
-      }
-    }
-
-    // 스와이프 제스처 감지
-    document.addEventListener('touchstart', function(e) {
-      startX = e.touches[0].clientX;
-    });
-
-    document.addEventListener('touchend', function(e) {
-      let endX = e.changedTouches[0].clientX;
-      if (startX - endX > 50) {
-        nextPage(); // 왼쪽으로 스와이프 → 다음 페이지
-      } else if (endX - startX > 50) {
-        prevPage(); // 오른쪽으로 스와이프 → 이전 페이지
-      }
-    });
+    function showPage(pageNum) { for (let i = 1; i <= totalPages; i++) document.getElementById('page' + i).classList.remove('active'); document.getElementById('page' + pageNum).classList.add('active'); }
+    function nextPage() { if (currentPage < totalPages) { currentPage++; showPage(currentPage); document.getElementById('flipSound').play(); } }
+    function prevPage() { if (currentPage > 1) { currentPage--; showPage(currentPage); document.getElementById('flipSound').play(); } }
+    document.addEventListener('touchstart', function(e) { startX = e.touches[0].clientX; });
+    document.addEventListener('touchend', function(e) { let endX = e.changedTouches[0].clientX; if (startX - endX > 50) nextPage(); else if (endX - startX > 50) prevPage(); });
   </script>
 </body>
 </html>
