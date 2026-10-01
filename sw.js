@@ -1,5 +1,5 @@
-const CACHE_NAME='my-recipes-qna-v5';
-const RECIPE_PAGES=['haemul-jiri.html','jokbal.html','ori-tang.html','yukgaejang.html','sikhye.html','dongtae-tang.html','kodari-jjim.html'];
+const CACHE_NAME='my-recipes-qna-v6';
+const RECIPE_PAGES=['haemul-jiri.html','jokbal.html','ori-tang.html','yukgaejang.html','sikhye.html','dongtae-tang.html','kodari-jjim.html','cocktail.html'];
 self.addEventListener('install',event=>self.skipWaiting());
 self.addEventListener('activate',event=>event.waitUntil(self.clients.claim()));
 self.addEventListener('fetch',event=>{
@@ -10,7 +10,10 @@ self.addEventListener('fetch',event=>{
  event.respondWith((async()=>{
   try{
    const res=await fetch(req); const html=await res.text();
-   const fresh=html.replace(/qna\.js(?:\?[^"']*)?/g,'qna.js?v=20261001-3');
+   let fresh=html.replace(/qna\.js(?:\?[^"']*)?/g,'qna.js?v=20261001-5');
+   if(!fresh.includes('qna.js?v=20261001-5')){
+    fresh=fresh.replace(/<\/body>/i,'<script type="module" src="./qna.js?v=20261001-5"></script>\n</body>');
+   }
    return new Response(fresh,{status:res.status,statusText:res.statusText,headers:{'Content-Type':'text/html; charset=utf-8','Cache-Control':'no-store'}});
   }catch(e){ return fetch(req); }
  })());
