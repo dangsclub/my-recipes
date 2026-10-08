@@ -1,139 +1,231 @@
-<!DOCTYPE html>
-<html lang="ko">
-<head>
+<html theme="dark" editor="Default Dark" style="overflow-y: hidden;"><head><meta charset="UTF-8">
+<script>
+  // Avoid arrow function syntax to stay ES5 compatible for the sake of googlebot.
+  window.addEventListener("message", function (message) {
+    if (message.source != window.parent) {
+      return;
+    }
+    if (message.data.sandboxed_iframe_evaluation) {
+      // Message is available in scope so evaluated script can get params from
+      // it.
+      window.currentMessage = message;
+      eval.call(null, message.data.sandboxed_iframe_evaluation);
+      delete window.currentMessage;
+    }
+  });
+</script>
+<style>html{--colab-primary-color:#0b57d0;--colab-primary-text-color:#1f1f1f;--colab-primary-text-color-rgb:31,31,31;--colab-secondary-text-color:#444746;--colab-primary-surface-color:#fff;--colab-secondary-surface-color:#f2f2f2;--colab-border-color:#c4c7c5;--colab-bold-border-color:#747775;--ansi-black:#000;--ansi-red:#8b0000;--ansi-green:#006400;--ansi-yellow:#cdcd00;--ansi-blue:#00e;--ansi-magenta:#cd00cd;--ansi-cyan:#4682b4;--ansi-gray:#e5e5e5;--ansi-bright-black:#7f7f7f;--ansi-bright-red:red;--ansi-bright-green:#00d000;--ansi-bright-yellow:#ff0;--ansi-bright-blue:#5c5cff;--ansi-bright-magenta:#f0f;--ansi-bright-cyan:#0ff;--ansi-bright-gray:#fff;--colab-anchor-color:var(--colab-primary-color);--colab-highlighted-surface-color:rgba(var(--colab-primary-text-color-rgb),0.08);--colab-icon-color:var(--colab-secondary-text-color);--colab-scrollbar-color:rgba(var(--colab-primary-text-color-rgb),0.24);--colab-scrollbar-hover-color:rgba(var(--colab-primary-text-color-rgb),0.48);--colab-scrollbar-active-color:rgba(var(--colab-primary-text-color-rgb),0.48);--colab-code-font-family:monospace;--colab-chrome-font-family:"Google Sans Text","Google Sans","Noto",sans-serif;--colab-chrome-font-size:14px}html[theme=dark]{--colab-primary-color:#a8c7fa;--colab-primary-text-color:#e3e3e3;--colab-primary-text-color-rgb:227,227,227;--colab-secondary-text-color:#c4c7c5;--colab-primary-surface-color:#282a2c;--colab-secondary-surface-color:#474747;--colab-border-color:#444746;--colab-bold-border-color:#8e918f;--ansi-black:#3f3f3f;--ansi-red:#ff7a88;--ansi-green:#57bb8a;--ansi-yellow:#ff6;--ansi-blue:#82b1ff;--ansi-magenta:#cd00cd;--ansi-cyan:#99bbd7;--ansi-gray:#e5e5e5;--ansi-bright-green:#0f0}html[theme=dark].embedded{--colab-secondary-surface-color:#202124;--colab-highlighted-surface-color:#202124;--colab-border-color:#3c4043}html[editor=Synthwave84]{--colab-anchor-color:#f97e72;--colab-primary-surface-color:#262335;--colab-secondary-surface-color:#49549539;--colab-highlighted-surface-color:#37294d99;--colab-border-color:#7059ab66;--ansi-red:#fe4450;--ansi-green:#72f1b8;--ansi-yellow:#f97e72;--ansi-blue:#03edf9;--ansi-magenta:#ff7edb;--ansi-cyan:#03edf9;--ansi-bright-red:#fe4450;--ansi-bright-green:#72f1b8;--ansi-bright-yellow:#fede5d;--ansi-bright-blue:#03edf9;--ansi-bright-magenta:#ff7edb;--ansi-bright-cyan:#03edf9}html{overflow-y:hidden}body{background:var(--colab-primary-surface-color);color:var(--colab-primary-text-color);font-family:var(--colab-chrome-font-family);font-size:var(--colab-chrome-font-size);line-height:1.24;font-weight:400;padding:7px 0 10px 5px;margin:0}h1,h2,h3,h4,h5,h6{color:var(--colab-primary-text-color);font-family:var(--colab-chrome-font-family);font-weight:700;margin-bottom:4px}p,ul{margin-bottom:6px;margin-top:6px}pre{margin-bottom:0;margin-top:0}a{color:var(--colab-anchor-color)}div.output_text,div.output_text pre,div.stream{display:inline}.execute_result>pre{display:block}.output_latex,.output_markdown{max-width:1016px}.output_markdown table,table.dataframe{border-collapse:collapse;border-spacing:0;border:none;table-layout:fixed}.output_markdown table thead,table.dataframe thead{border-bottom:1px solid var(--colab-border-color);font-family:var(--colab-code-font-family);text-align:right}.output_markdown table td,.output_markdown table th,.output_markdown table tr,table.dataframe td,table.dataframe th,table.dataframe tr{border:none;padding:.5em;white-space:normal}.output_markdown table th,table.dataframe th{font-weight:700}.output_markdown table th.col_heading,table.dataframe th.col_heading{text-align:right}.output_markdown table tbody tr:nth-child(odd),table.dataframe tbody tr:nth-child(odd){background:var(--colab-secondary-surface-color)}.output_markdown table tbody tr:hover,.output_markdown table tbody tr:nth-child(odd):hover,table.dataframe tbody tr:hover,table.dataframe tbody tr:nth-child(odd):hover{background-color:var(--colab-highlighted-surface-color)}.output_markdown table td,table.dataframe td{text-align:right}table.dataTable input.text_filter{width:95%}.output_markdown table th,table.dataTable th{text-align:left}.output_image>img{background-color:#fff;max-width:100%;vertical-align:bottom}.output_image>img.unconstrained{max-width:unset}.ansibold{font-weight:700}.ansiblack{color:#000}.ansired{color:darkred}.ansigreen{color:#006400}.ansiyellow{color:brown}.ansiblue{color:#00008b}.ansipurple{color:#9400d3}.ansicyan{color:#4682b4}.ansigray{color:gray}.ansibgblack{background-color:#000}.ansibgred{background-color:red}.ansibggreen{background-color:green}.ansibgyellow{background-color:#ff0}.ansibgblue{background-color:blue}.ansibgpurple{background-color:#f0f}.ansibgcyan{background-color:cyan}.ansibggray{background-color:gray}.output-error span{font-weight:400!important}.output-error pre{white-space:pre-wrap}.display_data .output_text pre,.execute_result .output_text pre{white-space:pre-wrap}input.raw_input{font-family:var(--colab-code-font-family);width:90%}input{background:var(--colab-primary-surface-color);border:1px solid var(--colab-bold-border-color);color:var(--colab-primary-text-color)}#output-area{display:flow-root}#output-area button.colab{background-color:var(--colab-secondary-surface-color);border:0;box-shadow:0 1px 3px 1px rgba(0,0,0,.15),0 1px 2px 0 rgba(0,0,0,.3);color:var(--colab-primary-text-color);font-family:var(--colab-chrome-font-family);font-size:11px;margin:0 4px 10px;padding:6px;text-transform:uppercase;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}#output-area button.colab:hover{background-color:var(--colab-highlighted-surface-color);cursor:pointer}#output-area .output-error button.error-details{background-color:#42a5f5;color:#fff}#output-area .output-error button.error-details:hover{background-color:#2196f3}#output-area .stdin-widget{-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;display:inline;font-family:var(--colab-code-font-family);margin-right:10px;margin-top:10px;min-width:250px;padding:1px}#output-area .stdin-widget-hidden{visibility:hidden}.error .collapsed .extraneous{display:none}.error .error-expander{-webkit-box-align:center;-webkit-align-items:center;-moz-box-align:center;-ms-flex-align:center;align-items:center;cursor:pointer;display:-webkit-box;display:-webkit-flex;display:-moz-box;display:-ms-flexbox;display:flex}.error .error-expander hr{border:0;border-top:1px solid var(--colab-bold-border-color);-webkit-box-flex:1;-webkit-flex-grow:1;-moz-box-flex:1;-ms-flex-positive:1;flex-grow:1;height:1px;margin:0 10px;padding:0}.error .error-expander hr:first-child{max-width:240px}.error .error-expander svg{fill:var(--colab-icon-color);height:24px;stroke:var(--colab-icon-color);width:24px}.lm-Widget.lm-mod-hidden{display:none!important}audio:focus{outline:none}::-webkit-scrollbar{height:12px;width:12px}::-webkit-scrollbar-button{height:0;width:0}::-webkit-scrollbar-corner{background:transparent}::-webkit-scrollbar-thumb{background-clip:content-box;background-color:var(--colab-scrollbar-color);border:2px solid transparent;border-radius:8px;min-height:28px;min-width:28px}::-webkit-scrollbar-thumb:hover{background-color:var(--colab-scrollbar-hover-color)}::-webkit-scrollbar-thumb:active{background-color:var(--colab-scrollbar-active-color)}@supports not (selector(::-webkit-scrollbar)){*{scrollbar-color:var(--colab-scrollbar-color) transparent}}.string-repr{display:inline}.string-repr .quote{opacity:75%;-webkit-user-select:none;-moz-user-select:none;-ms-user-select:none;user-select:none}.string-repr pre{display:inline;white-space:pre-wrap;word-break:break-all}.string-repr button{color:var(--colab-primary-text-color);cursor:pointer;border:1px solid #767676;border-radius:2px;outline:none}.string-repr button.copy{background:transparent;border:none;margin-left:4px;opacity:0;padding:0;stroke:var(--colab-primary-text-color);-webkit-transition:opacity .2s;transition:opacity .2s}.string-repr button.copy svg{width:14px}.string-repr.hover button.copy,.string-repr:hover button.copy{opacity:1}.string-repr button.more{background-color:transparent;border-color:transparent;display:none;padding:0;-webkit-transition:background-color .2s,border-color .2s;transition:background-color .2s,border-color .2s}.string-repr.large button.more{display:inline}.string-repr.large.truncated button .collapse{display:none}.string-repr.large button .expand{display:none}.string-repr.large.truncated button .expand{display:inline}.string-repr.hover button.more,.string-repr:hover button.more{border-color:#767676}
+/*# sourceMappingURL=outputframe.css.map */
+//@ sourceURL=https://ssl.gstatic.com/colaboratory-static/common/4937900da514f7cba2ef86b1446906f0/outputframe.css</style><base href="https://localhost:8080/"></head><body><div id="output-area"><span id="output-header"> </span><div id="output-body"><div class="display_data output-id-1"><div class="output_subarea output_html rendered_html">
+
+
+
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>🌙 댕스클럽 야식 레시피 콜렉션</title>
+    <title>🍳 댕스클럽 레시피 북 대시보드</title>
     <style>
         body {
-            font-family: 'Segoe UI', system-ui, -apple-system, sans-serif;
-            background: #0f172a;
-            color: #f1f5f9;
+            font-family: 'Segoe UI', -apple-system, sans-serif;
+            background-color: #f4f6f8;
+            color: #333;
             margin: 0;
-            padding: 40px 20px;
+            padding: 20px;
         }
-        .container {
-            max-width: 800px;
+        .dashboard-container {
+            max-width: 1100px;
             margin: 0 auto;
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
         }
-        header {
-            text-align: center;
-            margin-bottom: 40px;
-            border-bottom: 2px solid #1e293b;
-            padding-bottom: 20px;
+        .header-card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
         }
-        h1 {
-            color: #f59e0b;
-            font-size: 32px;
-            margin: 0 0 10px 0;
-        }
-        .subtitle {
-            color: #94a3b8;
-            font-size: 16px;
-        }
-        .recipe-card {
-            background: #1e293b;
-            border-radius: 12px;
-            padding: 25px;
-            margin-bottom: 25px;
-            box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.3);
-            border: 1px solid #334155;
-            transition: transform 0.2s;
-        }
-        .recipe-card:hover {
-            transform: translateY(-2px);
-        }
-        .recipe-title {
+        .header-title {
             font-size: 22px;
-            color: #fbbf24;
-            margin-top: 0;
-            margin-bottom: 15px;
-            border-bottom: 1px solid #475569;
-            padding-bottom: 10px;
-        }
-        .section-title {
             font-weight: bold;
-            color: #38bdf8;
-            margin: 15px 0 8px 0;
+            color: #2c3e50;
         }
-        ul, ol {
-            margin: 0;
-            padding-left: 20px;
-            color: #cbd5e1;
-        }
-        li {
-            margin-bottom: 6px;
-        }
-        footer {
-            text-align: center;
-            margin-top: 50px;
-            color: #64748b;
+        .action-btn {
+            background: #27ae60;
+            color: white;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 6px;
             font-size: 14px;
+            cursor: pointer;
+            font-weight: bold;
+            transition: background 0.2s;
+        }
+        .action-btn:hover {
+            background: #2196f3;
+        }
+        .main-section {
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 20px;
+        }
+        @media(max-width: 768px) {
+            .main-section {
+                grid-template-columns: 1fr;
+            }
+        }
+        .card {
+            background: white;
+            padding: 20px;
+            border-radius: 8px;
+            box-shadow: 0 2px 4px rgba(0,0,0,0.05);
+        }
+        .card-title {
+            font-size: 18px;
+            font-weight: 600;
+            border-bottom: 2px solid #eee;
+            padding-bottom: 8px;
+            margin-bottom: 12px;
+            color: #34495e;
+        }
+        .file-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+        .file-item {
+            padding: 12px;
+            border-bottom: 1px solid #f1f1f1;
+            cursor: pointer;
+            border-radius: 4px;
+            transition: background 0.2s;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+        .file-item:hover {
+            background: #eef2f7;
+        }
+        .file-item.active {
+            background: #e3f2fd;
+            color: #1976d2;
+            font-weight: bold;
+        }
+        .recipe-preview {
+            background: #fafafa;
+            border: 1px solid #e1e8ed;
+            padding: 20px;
+            border-radius: 6px;
+            min-height: 350px;
+            max-height: 550px;
+            overflow-y: auto;
+            white-space: pre-wrap;
+            font-size: 15px;
+            line-height: 1.7;
         }
     </style>
-</head>
-<body>
-    <div class="container">
-        <header>
-            <h1>🌙 야식 & 건강 야식 레시피 콜렉션</h1>
-            <p class="subtitle">댕스클럽 전용 특별 야식 가이드 (통합 대시보드)</p>
-        </header>
 
-        <div class="recipe-card">
-            <div class="recipe-title">🌽 1. 5분 완성 초간단 콘치즈</div>
-            <div class="section-title">💡 재료</div>
-            <ul>
-                <li>옥수수 콘 통조림 1캔, 마요네즈 3큰술, 설탕 0.5큰술, 피자 치즈 듬뿍, 버터 1큰술</li>
-            </ul>
-            <div class="section-title">🍳 조리법</div>
-            <ol>
-                <li>콘의 물기를 빼고 달군 팬에 버터와 함께 볶아줍니다.</li>
-                <li>마요네즈, 설탕을 넣고 섞은 뒤 치즈를 가득 얹어 뚜껑을 닫고 치즈를 녹여 완성합니다.</li>
-            </ol>
+
+    <div class="dashboard-container">
+        <div class="header-card">
+            <div class="header-title">📖 댕스클럽 통합 레시피 북 대시보드</div>
+            <button class="action-btn" id="pub-btn" onclick="deployDashboard()" disabled="">🔄 배포 중...</button>
         </div>
 
-        <div class="recipe-card">
-            <div class="recipe-title">🍜 2. 고급진 풍미의 짜장라면</div>
-            <div class="section-title">💡 재료</div>
-            <ul>
-                <li>짜장라면 1봉지, 계란 1개, 슬라이스 치즈 1장, 고춧가루 약간</li>
-            </ul>
-            <div class="section-title">🍳 조리법</div>
-            <ol>
-                <li>면을 삶은 뒤 물을 5스푼 정도만 남기고 버립니다.</li>
-                <li>분말 스프와 치즈 1장을 넣어 약불에서 빠르게 비빈 후 반숙 계란과 고춧가루를 올립니다.</li>
-            </ol>
-        </div>
+        <div class="main-section">
+            <!-- 좌측 레시피 파일 목록 -->
+            <div class="card">
+                <div class="card-title">📂 저장소 레시피 도서관</div>
+                <ul class="file-list" id="file-list-ul"><li class="file-item">🍳 <strong>README.md</strong></li><li class="file-item">🍳 <strong>late_night_recipe.md</strong></li></ul>
+            </div>
 
-        <div class="recipe-card">
-            <div class="recipe-title">🥑 3. 건강 야식: 저칼로리 들기름 두부김치</div>
-            <div class="section-title">💡 재료</div>
-            <ul>
-                <li>두부 1모, 김치 1/4포기, 들기름 2큰술, 올리고당 1큰술, 깨 약간</li>
-            </ul>
-            <div class="section-title">🍳 조리법</div>
-            <ol>
-                <li>두부는 끓는 물에 데쳐서 한입 크기로 썰어줍니다.</li>
-                <li>김치는 잘게 썰어 들기름 and 올리고당을 두르고 볶아내어 두부와 함께 곁들입니다.</li>
-            </ol>
+            <!-- 우측 상세 보기 프리뷰 -->
+            <div class="card">
+                <div class="card-title" id="preview-title">📄 레시피 원본 상세내용</div>
+                <div class="recipe-preview" id="preview-area">
+                    왼쪽 목록에서 보고 싶은 레시피를 선택해 보세요!
+                </div>
+            </div>
         </div>
-
-        <div class="recipe-card">
-            <div class="recipe-title">🌶️ 4. 매콤달콤 7분 국물 떡볶이</div>
-            <div class="section-title">💡 재료</div>
-            <ul>
-                <li>떡볶이 떡 2컵, 사각 어묵 2장, 대파 1/2대, 물 2컵, 고추장 2큰술, 고춧가루 1큰술, 설탕 2큰술, 진간장 1큰술</li>
-            </ul>
-            <div class="section-title">🍳 조리법</div>
-            <ol>
-                <li>냄비에 물 2컵과 고추장, 고춧가루, 설탕, 진간장을 넣고 잘 풀어준 뒤 끓입니다.</li>
-                <li>국물이 끓기 시작하면 씻어둔 떡과 먹기 좋게 썬 어묵, 대파를 넣고 떡이 말랑해질 때까지 5~7분간 졸여 완성합니다.</li>
-            </ol>
-        </div>
-
-        <footer>
-            <p>© dangsclub/my-recipes. Beautifully Hosted Web Collection.</p>
-        </footer>
     </div>
-</body>
-</html>
+
+    <script type="">
+        window.onerror = function(message) {
+            google.colab.kernel.invokeFunction('report_js_error', [message], {});
+        };
+
+        const files = [{"name": "README.md", "path": "README.md", "sha": "b3eba2b35b3079d5554765327a5db3dadde15928", "size": 67, "url": "https://api.github.com/repos/dangsclub/my-recipes/contents/README.md?ref=main", "html_url": "https://github.com/dangsclub/my-recipes/blob/main/README.md", "git_url": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/b3eba2b35b3079d5554765327a5db3dadde15928", "download_url": "https://raw.githubusercontent.com/dangsclub/my-recipes/main/README.md", "type": "file", "_links": {"self": "https://api.github.com/repos/dangsclub/my-recipes/contents/README.md?ref=main", "git": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/b3eba2b35b3079d5554765327a5db3dadde15928", "html": "https://github.com/dangsclub/my-recipes/blob/main/README.md"}}, {"name": "cocktail.html", "path": "cocktail.html", "sha": "8bccf6d1265e1b620e4ce22496f2a5c5c4c24e41", "size": 4340, "url": "https://api.github.com/repos/dangsclub/my-recipes/contents/cocktail.html?ref=main", "html_url": "https://github.com/dangsclub/my-recipes/blob/main/cocktail.html", "git_url": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/8bccf6d1265e1b620e4ce22496f2a5c5c4c24e41", "download_url": "https://raw.githubusercontent.com/dangsclub/my-recipes/main/cocktail.html", "type": "file", "_links": {"self": "https://api.github.com/repos/dangsclub/my-recipes/contents/cocktail.html?ref=main", "git": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/8bccf6d1265e1b620e4ce22496f2a5c5c4c24e41", "html": "https://github.com/dangsclub/my-recipes/blob/main/cocktail.html"}}, {"name": "dongtae-tang.html", "path": "dongtae-tang.html", "sha": "77fdfec004438474dc0646e37534336a0454a92b", "size": 2747, "url": "https://api.github.com/repos/dangsclub/my-recipes/contents/dongtae-tang.html?ref=main", "html_url": "https://github.com/dangsclub/my-recipes/blob/main/dongtae-tang.html", "git_url": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/77fdfec004438474dc0646e37534336a0454a92b", "download_url": "https://raw.githubusercontent.com/dangsclub/my-recipes/main/dongtae-tang.html", "type": "file", "_links": {"self": "https://api.github.com/repos/dangsclub/my-recipes/contents/dongtae-tang.html?ref=main", "git": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/77fdfec004438474dc0646e37534336a0454a92b", "html": "https://github.com/dangsclub/my-recipes/blob/main/dongtae-tang.html"}}, {"name": "haemul-jiri.html", "path": "haemul-jiri.html", "sha": "03c8e01997591a9be9b300926b7d6b0c658057ee", "size": 4429, "url": "https://api.github.com/repos/dangsclub/my-recipes/contents/haemul-jiri.html?ref=main", "html_url": "https://github.com/dangsclub/my-recipes/blob/main/haemul-jiri.html", "git_url": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/03c8e01997591a9be9b300926b7d6b0c658057ee", "download_url": "https://raw.githubusercontent.com/dangsclub/my-recipes/main/haemul-jiri.html", "type": "file", "_links": {"self": "https://api.github.com/repos/dangsclub/my-recipes/contents/haemul-jiri.html?ref=main", "git": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/03c8e01997591a9be9b300926b7d6b0c658057ee", "html": "https://github.com/dangsclub/my-recipes/blob/main/haemul-jiri.html"}}, {"name": "index.html", "path": "index.html", "sha": "994b5062534af21d5323d6c2d3f0f107c4d79d70", "size": 5183, "url": "https://api.github.com/repos/dangsclub/my-recipes/contents/index.html?ref=main", "html_url": "https://github.com/dangsclub/my-recipes/blob/main/index.html", "git_url": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/994b5062534af21d5323d6c2d3f0f107c4d79d70", "download_url": "https://raw.githubusercontent.com/dangsclub/my-recipes/main/index.html", "type": "file", "_links": {"self": "https://api.github.com/repos/dangsclub/my-recipes/contents/index.html?ref=main", "git": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/994b5062534af21d5323d6c2d3f0f107c4d79d70", "html": "https://github.com/dangsclub/my-recipes/blob/main/index.html"}}, {"name": "jokbal.html", "path": "jokbal.html", "sha": "672295b7e71f9c0deacf80f22b46a592440a34f4", "size": 5551, "url": "https://api.github.com/repos/dangsclub/my-recipes/contents/jokbal.html?ref=main", "html_url": "https://github.com/dangsclub/my-recipes/blob/main/jokbal.html", "git_url": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/672295b7e71f9c0deacf80f22b46a592440a34f4", "download_url": "https://raw.githubusercontent.com/dangsclub/my-recipes/main/jokbal.html", "type": "file", "_links": {"self": "https://api.github.com/repos/dangsclub/my-recipes/contents/jokbal.html?ref=main", "git": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/672295b7e71f9c0deacf80f22b46a592440a34f4", "html": "https://github.com/dangsclub/my-recipes/blob/main/jokbal.html"}}, {"name": "kodari-jjim.html", "path": "kodari-jjim.html", "sha": "f881e416e17187bdcb44855c49fc4eec4318ddc4", "size": 2911, "url": "https://api.github.com/repos/dangsclub/my-recipes/contents/kodari-jjim.html?ref=main", "html_url": "https://github.com/dangsclub/my-recipes/blob/main/kodari-jjim.html", "git_url": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/f881e416e17187bdcb44855c49fc4eec4318ddc4", "download_url": "https://raw.githubusercontent.com/dangsclub/my-recipes/main/kodari-jjim.html", "type": "file", "_links": {"self": "https://api.github.com/repos/dangsclub/my-recipes/contents/kodari-jjim.html?ref=main", "git": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/f881e416e17187bdcb44855c49fc4eec4318ddc4", "html": "https://github.com/dangsclub/my-recipes/blob/main/kodari-jjim.html"}}, {"name": "late_night_recipe.md", "path": "late_night_recipe.md", "sha": "fd2bdccd38591e7f1d1d2b95753d6020692302c3", "size": 1704, "url": "https://api.github.com/repos/dangsclub/my-recipes/contents/late_night_recipe.md?ref=main", "html_url": "https://github.com/dangsclub/my-recipes/blob/main/late_night_recipe.md", "git_url": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/fd2bdccd38591e7f1d1d2b95753d6020692302c3", "download_url": "https://raw.githubusercontent.com/dangsclub/my-recipes/main/late_night_recipe.md", "type": "file", "_links": {"self": "https://api.github.com/repos/dangsclub/my-recipes/contents/late_night_recipe.md?ref=main", "git": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/fd2bdccd38591e7f1d1d2b95753d6020692302c3", "html": "https://github.com/dangsclub/my-recipes/blob/main/late_night_recipe.md"}}, {"name": "ori-tang.html", "path": "ori-tang.html", "sha": "ee29aa48e9248f39ca626de02e5064a12c212841", "size": 5876, "url": "https://api.github.com/repos/dangsclub/my-recipes/contents/ori-tang.html?ref=main", "html_url": "https://github.com/dangsclub/my-recipes/blob/main/ori-tang.html", "git_url": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/ee29aa48e9248f39ca626de02e5064a12c212841", "download_url": "https://raw.githubusercontent.com/dangsclub/my-recipes/main/ori-tang.html", "type": "file", "_links": {"self": "https://api.github.com/repos/dangsclub/my-recipes/contents/ori-tang.html?ref=main", "git": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/ee29aa48e9248f39ca626de02e5064a12c212841", "html": "https://github.com/dangsclub/my-recipes/blob/main/ori-tang.html"}}, {"name": "qna.js", "path": "qna.js", "sha": "fef3fdff2d506d375f3be05b9f1859f5e05d1aee", "size": 15457, "url": "https://api.github.com/repos/dangsclub/my-recipes/contents/qna.js?ref=main", "html_url": "https://github.com/dangsclub/my-recipes/blob/main/qna.js", "git_url": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/fef3fdff2d506d375f3be05b9f1859f5e05d1aee", "download_url": "https://raw.githubusercontent.com/dangsclub/my-recipes/main/qna.js", "type": "file", "_links": {"self": "https://api.github.com/repos/dangsclub/my-recipes/contents/qna.js?ref=main", "git": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/fef3fdff2d506d375f3be05b9f1859f5e05d1aee", "html": "https://github.com/dangsclub/my-recipes/blob/main/qna.js"}}, {"name": "sikhye.html", "path": "sikhye.html", "sha": "b81eeb0f8d28b6d9c7386a461a931f7f62c34cd9", "size": 4392, "url": "https://api.github.com/repos/dangsclub/my-recipes/contents/sikhye.html?ref=main", "html_url": "https://github.com/dangsclub/my-recipes/blob/main/sikhye.html", "git_url": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/b81eeb0f8d28b6d9c7386a461a931f7f62c34cd9", "download_url": "https://raw.githubusercontent.com/dangsclub/my-recipes/main/sikhye.html", "type": "file", "_links": {"self": "https://api.github.com/repos/dangsclub/my-recipes/contents/sikhye.html?ref=main", "git": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/b81eeb0f8d28b6d9c7386a461a931f7f62c34cd9", "html": "https://github.com/dangsclub/my-recipes/blob/main/sikhye.html"}}, {"name": "sw.js", "path": "sw.js", "sha": "4e12e847ae870c93d7798162e87648ba9039fb0a", "size": 1328, "url": "https://api.github.com/repos/dangsclub/my-recipes/contents/sw.js?ref=main", "html_url": "https://github.com/dangsclub/my-recipes/blob/main/sw.js", "git_url": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/4e12e847ae870c93d7798162e87648ba9039fb0a", "download_url": "https://raw.githubusercontent.com/dangsclub/my-recipes/main/sw.js", "type": "file", "_links": {"self": "https://api.github.com/repos/dangsclub/my-recipes/contents/sw.js?ref=main", "git": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/4e12e847ae870c93d7798162e87648ba9039fb0a", "html": "https://github.com/dangsclub/my-recipes/blob/main/sw.js"}}, {"name": "yukgaejang.html", "path": "yukgaejang.html", "sha": "73cd6ccaf170eb4712544a436eb68ed831967f2f", "size": 10055, "url": "https://api.github.com/repos/dangsclub/my-recipes/contents/yukgaejang.html?ref=main", "html_url": "https://github.com/dangsclub/my-recipes/blob/main/yukgaejang.html", "git_url": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/73cd6ccaf170eb4712544a436eb68ed831967f2f", "download_url": "https://raw.githubusercontent.com/dangsclub/my-recipes/main/yukgaejang.html", "type": "file", "_links": {"self": "https://api.github.com/repos/dangsclub/my-recipes/contents/yukgaejang.html?ref=main", "git": "https://api.github.com/repos/dangsclub/my-recipes/git/blobs/73cd6ccaf170eb4712544a436eb68ed831967f2f", "html": "https://github.com/dangsclub/my-recipes/blob/main/yukgaejang.html"}}];
+
+        function loadFileList() {
+            const ul = document.getElementById('file-list-ul');
+            ul.innerHTML = '';
+
+            const mdFiles = files.filter(f => f.name.endsWith('.md') || f.name.endsWith('.txt'));
+
+            if (mdFiles.length === 0) {
+                ul.innerHTML = '<li class="file-item">등록된 레시피 파일이 없습니다.</li>';
+                return;
+            }
+
+            mdFiles.forEach(file => {
+                const li = document.createElement('li');
+                li.className = 'file-item';
+                li.innerHTML = `🍳 <strong>${file.name}</strong>`;
+                li.onclick = () => selectFile(file.path, li);
+                ul.appendChild(li);
+            });
+        }
+
+        function selectFile(path, element) {
+            document.querySelectorAll('.file-item').forEach(el => el.classList.remove('active'));
+            element.classList.add('active');
+
+            document.getElementById('preview-title').innerText = '📄 ' + path + ' 상세 내용';
+            document.getElementById('preview-area').innerText = '로딩 중...';
+
+            google.colab.kernel.invokeFunction('get_file_content', [path], {})
+                .then(response => {
+                    const res = JSON.parse(response.data['text/plain'].slice(1, -1).replace(/\"/g, '"'));
+                    if (res.status === 'success') {
+                        document.getElementById('preview-area').innerText = res.content;
+                    } else {
+                        document.getElementById('preview-area').innerText = '에러 발생: ' + res.message;
+                    }
+                }).catch(err => {
+                    document.getElementById('preview-area').innerText = '네트워크 통신 중 오류가 발생했습니다.';
+                });
+        }
+
+        function deployDashboard() {
+            const btn = document.getElementById('pub-btn');
+            btn.innerText = '🔄 배포 중...';
+            btn.disabled = true;
+
+            const fullHtml = document.documentElement.outerHTML;
+
+            google.colab.kernel.invokeFunction('publish_dashboard_to_github', [fullHtml], {})
+                .then(response => {
+                    const res = JSON.parse(response.data['text/plain'].slice(1, -1).replace(/\"/g, '"'));
+                    if (res.status === 'success') {
+                        alert('🎉 성공적으로 index.html이 업데이트되었습니다! 1~2분 후에 GitHub Pages 배포 결과를 확인해 보세요.');
+                        btn.innerText = '✅ 배포 완료';
+                    } else {
+                        alert('❌ 배포 실패: ' + res.message);
+                        btn.innerText = '✨ index.html 페이지로 서비스 배포';
+                        btn.disabled = false;
+                    }
+                }).catch(err => {
+                    alert('❌ 통신 오류: ' + err);
+                    btn.innerText = '✨ index.html 페이지로 서비스 배포';
+                    btn.disabled = false;
+                });
+        }
+
+        // 초기 파일리스트 로드
+        loadFileList();
+    </script>
+
+
+</div></div></div><span id="output-footer"></span></div></body></html>
